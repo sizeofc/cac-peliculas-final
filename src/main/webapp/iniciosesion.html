@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="iniciosesion.css" as="style">
+    <link rel="stylesheet" href="iniciosesion.css">
+    <title>Iniciar Sesion</title>
+</head>
+<body>
+    <div class="container">
+        <h1>INICIAR SESION</h1>
+        <form action="/proyecto_final/login" method="POST" id="formulario">
+            <input type="text" 
+                name="email" id="usuario" 
+                placeholder="Email@email.dominio"
+                >
+            <small id="e-usuario"></small>
+            <input type="password" name="password" id="password" placeholder="Clave">
+            <small id="e-password"></small>
+            <button type="submit">Iniciar sesion</button>
+
+        </form>
+    </div>
+    <script src="./js/iniciarsesion.js"></script>
+</body>
+</html>

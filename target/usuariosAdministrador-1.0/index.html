@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f7fb471b65.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+    <link rel="shorcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="preload" href="style.css" as="style">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preload" href="./images/banner-bg.webp" as="image" >
+
+    <title>Pelis CaC</title>
+    
+</head>
+<body>
+    <header class="header">
+        <nav class="navegacion">
+                <a href="" class="anclaLogo">
+                    <i class="fas fa-film" aria-hidden="true"></i>
+                    <span>Pelis CaC</span>
+                </a>
+                <ul class="listaNav">
+                    <li class="listaItem"><a href="#" class="linkNav">Tendencias</a></li>
+                    <li class="listaItem"><a href="registrarse.html" class="linkNav">Registrarse</a></li>
+                    <li class="listaItem"><span id="nombreUsuario" style="display: none;"></span>
+                    <li class="listaItem"><a href="iniciosesion.html" id="boton_login" class="linkNav iniciarSesion">Iniciar Sesion</a></li>
+                </ul>
+        </nav>
+    </header>
+
+    <!-- MAIN  -->
+    <main id="main" class="main">
+      <section class="mainSection">
+        <h1 class="mainTitle">Peliculas y series ilimitadas<br/>
+          en un solo lugar</h1>
+        <h2 class="mainSubtitle">Disfrute donde quieras.<br />
+          Cancela en cualquier momento.</h2>
+        <a class="btn-registrate" href="registrarse.html">Registrate</a>
+
+      </section>
+
+      <!-- BUSCADOR -->
+      <section class="mainSearch">
+        <h2 class="searchTitle">¿Que estas buscando para ver?</h2>
+        <form action="#" class="searchMovie">
+          <input class="searchInput" type="text" name="searchInput" id="searchInput" placeholder="Buscar...">
+          <input type="submit" value="Buscar" class="btn-search">
+        </form>
+        <hr>
+      </section>
+
+       <!-- SECCION TENDENCIAS  -->
+    <section class="tendencias-container">
+      <h2 class="titulotendencia">Las tendencias de hoy</h3>
+      <div id="tendencias" class="tendencias">
+
+
+          <!-- <div class="card-tendencia">
+              <img src="./images/1.jpg" alt="1" loading="lazy">
+              <p>Iron Man 3</p>
+          </div>
+          <div class="card-tendencia">
+              <img src="./images/2.jpg" alt="1" loading="lazy">
+              <p>Thor</p>
+          </div>
+          <div class="card-tendencia">
+              <img src="./images/3.jpg" alt="1" loading="lazy">
+              <p>Thor Ragnarok</p>
+          </div>
+          <div class="card-tendencia">
+              <img src="./images/7.jpg" alt="1" loading="lazy">
+              <p>imagen 1</p>
+          </div>
+          <div class="card-tendencia">
+              <img src="./images/8.jpg" alt="1" loading="lazy">
+              <p>imagen 1</p>
+          </div>
+          <div class="card-tendencia">
+              <img src="./images/4.jpg" alt="1" loading="lazy">
+              <p>imagen 1</p>
+          </div>
+          <div class="card-tendencia">
+              <img src="./images/5.jpg" alt="1" loading="lazy">
+              <p>imagen 1</p>
+          </div>
+          <div class="card-tendencia">
+              <img src="./images/6.jpg" alt="1" loading="lazy">
+              <p>imagen 1</p>
+          </div> -->
+      </div>
+      <div class="paginacion">
+          <button type="button" id="btn-atras" class="btn-paginacion">Anterior</button>
+          <button type="button" id="btn-siguiente" class="btn-paginacion">Siguiente</button>
+      </div>
+      <hr>
+  </section>
+
+  <!-- SECCION LAS MAS ACLAMADAS  -->
+  <section class="masAclamadas">
+      <h3 class="titulomasAclamadas">Las más aclamadas</h3>
+      <div class="carrucel" id="carrucel">
+
+
+          <!-- <img class="img-aclamadas" src="./images/1.jpg" alt="Iron Man 3" loading="lazy">
+          <img class="img-aclamadas" src="./images/2.jpg" alt="2" loading="lazy">
+          <img class="img-aclamadas" src="./images/3.jpg" alt="3" loading="lazy">
+          <img class="img-aclamadas" src="./images/4.jpg" alt="4" loading="lazy">
+          <img class="img-aclamadas" src="./images/5.jpg" alt="5" loading="lazy">
+          <img class="img-aclamadas" src="./images/6.jpg" alt="6" loading="lazy">
+          <img class="img-aclamadas" src="./images/7.jpg" alt="7" loading="lazy">
+          <img class="img-aclamadas" src="./images/8.jpg" alt="8" loading="lazy">
+          <img class="img-aclamadas" src="./images/4.jpg" alt="4" loading="lazy">
+          <img class="img-aclamadas" src="./images/5.jpg" alt="5" loading="lazy">
+          <img class="img-aclamadas" src="./images/6.jpg" alt="6" loading="lazy">
+          <img class="img-aclamadas" src="./images/7.jpg" alt="7" loading="lazy">
+          <img class="img-aclamadas" src="./images/8.jpg" alt="8" loading="lazy">
+           <img class="img-aclamadas" src="./images/4.jpg" alt="4" loading="lazy">
+          <img class="img-aclamadas" src="./images/5.jpg" alt="5" loading="lazy">
+          <img class="img-aclamadas" src="./images/6.jpg" alt="6" loading="lazy">
+          <img class="img-aclamadas" src="./images/7.jpg" alt="7" loading="lazy">
+          <img class="img-aclamadas" src="./images/8.jpg" alt="8" loading="lazy"> -->
+      </div>
+  </section>
+       
+    </main>
+
+   
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <nav class="navegacion">
+        <ul class="listaNav">
+          <li class="listaItem"><a href="#" class="linkNav">Términos y Condiciones</a></li>
+          <li class="listaItem"><a href="#" class="linkNav">Preguntas Frecuentes</a></li>
+          <li class="listaItem"><a href="#" class="linkNav">Ayuda</a></li>
+          <li class="listaItem">
+            <a href="#" class="linkNav administradorPeliculas">Administrador Peliculas</a>
+          </li>
+        </ul>
+      </nav>
+      <a href="#main" class="container-btn-up">
+        <img src="./images/flecha-hacia-arriba.png" alt="subir arriba">
+      </a>
+    </footer>
+    
+      <script src="./js/scripts.js"></script>
+    
+</body>
+</html>

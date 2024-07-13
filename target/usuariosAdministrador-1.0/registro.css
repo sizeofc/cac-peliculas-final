@@ -1,0 +1,119 @@
+body {
+    background-image: url('./images/bg-register.jpg'); /* Reemplaza './images/bg-register.jpg' con la ruta correcta de tu imagen de fondo */
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 400px;
+    margin: 10px auto auto auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo semi-transparente */
+    transform: scale(0.5); /* Inicialmente, el contenedor se escala al 50% */
+    opacity: 0; /* El contenedor no es visible inicialmente */
+    transition: transform 1.5s ease, opacity 0.5s ease; /* Animación de escala y opacidad */
+    font-size: clamp(16px, 4vw, 24px);
+}
+
+.container.active {
+    transform: scale(0.8); /* Cuando se activa la clase 'active', el contenedor vuelve a su tamaño normal */
+    opacity: 1; /* El contenedor se vuelve visible */
+}
+
+h1 {
+    color: white;
+    text-align: center;
+}
+
+.form-control {
+    margin-bottom: 20px;
+}
+
+.form-control input,
+.form-control select {
+    width: calc(100% - 20px); /* Ancho del 100% menos el espacio para el padding */
+    padding: 15px;
+    font-size: 1rem;
+    border: 2px solid #be2727;
+    border-radius: 25px;
+    background-color: #333131; /* Gris oscuro */
+    box-sizing: border-box; /* Incluir el padding en el ancho total */
+}
+
+.form-control input:focus,
+.form-control select:focus {
+    outline: none;
+    background-color: #333131; /* Gris oscuro cuando está enfocado */
+    color: grey;
+}
+
+.form-control label {
+    display: inline-block;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items:center;
+    font-size: 1rem;
+    width: 100%;
+    
+    & input{
+        width: 15px;
+        margin-left: 15px;
+    }
+    & label{
+        margin-left: 10px;
+    }
+}
+
+button {
+    width: 100%;
+    padding: 20px;
+    font-size: 2rem;
+    background-color: #9c3c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.need-help {
+    text-align: center;
+    color: white;
+}
+
+.fwhite {
+    color: #fff;
+}
+
+
+
+.form-control small {
+    color: #e74c3c;
+    visibility: hidden;
+    font-size: 0.8rem;
+}
+
+small.error{
+    visibility: visible;
+}
+
+.iniciarSesion{
+    color: #FFF;
+    text-decoration: none;
+}
+
+#container {
+    transition: transform 0.5s ease-in-out;
+}
+
+#container.slide-out {
+    transform: translateX(-200%);
+}

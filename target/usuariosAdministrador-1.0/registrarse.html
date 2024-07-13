@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preload" href="registro.css" as="style">
+        <link rel="stylesheet" href="registro.css">
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+        <title>Registro</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    </head>
+
+    <body>
+        <div id="container" class="container">
+            <h1>Registro</h1>
+
+            <div id="message" style="display: none;">
+                <p id="exito-text"></p>
+            </div>
+
+            <form id="registrationForm" class="form" action="/proyecto_final/registro" method="post">
+                <div class="form-control">
+                    <input type="text" name="nombre" placeholder="Nombre" oninput="delError('e-nombre')">
+                    <small id="e-nombre"></small>
+                </div>
+                <div class="form-control">
+                    <input type="text" name="apellido" placeholder="Apellido" oninput="delError('e-apellido')">
+                    <small id="e-apellido"></small>
+                </div>
+                <div class="form-control">
+                    <input type="text" name="email" placeholder="Correo Electrónico" oninput="delError('e-email')">
+                    <small id="e-email"></small>
+                </div>
+                <div class="form-control">
+                    <input type="password" name="password" placeholder="Contraseña" oninput="delError('e-password')">
+                    <small id="e-password"></small>
+                </div>
+                <div class="form-control">
+                    <input class="fwhite" name="fechaNacimiento" type="date" id="datepicker" placeholder="Fecha (dd/mm/aaaa)" oninput="delError('e-fecha')">
+                    <small id="e-fecha"></small>
+                </div>
+                <div class="form-control">
+                    <select class="fwhite" name="pais" title="Selecciona un pais" onchange="delError('e-pais')">
+                        <option value="" disabled selected>Seleccionar País</option>
+                        <!-- Agrega opciones de países aquí -->
+                        <option value="Argentina">Argentina</option>
+                        <option value="Bolivia">Bolivia</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="Chile">Chile</option>
+                        <option value="Colombia">Colombia</option>
+                        <option value="Peru">Peru</option>
+                        <option value="Uruguay">Uruguay</option>
+                        <option value="Venezuela">Venezuela</option>
+
+
+                    </select>
+                    <small id="e-pais"></small>
+                </div>
+                <div class="form-control checkbox-container">
+                    <input type="checkbox" id="termsCheckbox" onchange="delError('e-terminos')">
+                    <label for="termsCheckbox">Acepto términos y condiciones</label>
+                    <small id="e-terminos"></small>
+                </div>
+                <button type="submit">Registrarse</button>
+            </form>
+            <p class="need-help">¿Necesitas ayuda?</p>
+            <a id="iniciar-sesion" class="iniciarSesion" href="iniciosesion.html">Iniciar Sesion</a>
+        </div>
+
+
+        <script src="./js/registro.js"></script>
+        <script>
+                        $("#datepicker").datepicker({
+                            dateFormat: 'dd/mm/yyyy', // Formato de la fecha
+                            showOtherMonths: true, // Mostrar días de otros meses
+                            selectOtherMonths: true, // Permitir seleccionar días de otros meses
+                            showButtonPanel: true, // Mostrar botón de "Hoy"
+                            currentText: 'Hoy', // Texto para el botón de "Hoy"
+                            onSelect: function (dateText, inst) {
+                                // Se ejecuta cuando se selecciona una fecha
+                                $(this).change(); // Forzar el evento change para activar la validación
+                            }
+                        });
+
+                        function delError(e) {
+                            document.getElementById(e).innerHTML = "";
+
+                        }
+
+
+                        //obtiene el parametro exito cuando se registra el usuario
+                        // Función para obtener el valor de un parámetro de la URL
+                        function getParameterByName(name) {
+                            const urlParams = new URLSearchParams(window.location.search);
+                            return urlParams.get(name);
+                        }
+
+                        // Obtener el parámetro 'exito'
+                        const exito = getParameterByName('exito');
+                        const error = getParameterByName('error');
+
+                        // Si 'exito' es 'true', muestra el mensaje de éxito
+                        if (exito === 'true') {
+                            document.getElementById('message').style.display = 'block';
+                            document.getElementById('exito-text').textContent="¡Registro Exitoso!"
+                        }
+                        if(error==='true'){
+                            document.getElementById('message').style.display = 'block';
+                            document.getElementById('exito-text').textContent="¡Error al registrar!"
+                        }
+        </script>
+
+    </body>
+
+</html>

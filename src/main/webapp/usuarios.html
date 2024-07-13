@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <title>Lista de Usuarios</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <h1 class="mt-4">Lista de Usuarios</h1>
+            <table class="table table-bordered mt-4">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>País</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="userTableBody">
+                    <!-- Aquí se insertarán las filas de usuarios -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Modal para editar usuario -->
+        <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editUserModalLabel">Editar Usuario</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editUserForm">
+                            <input type="hidden" id="editUserId">
+                            <div class="form-group">
+                                <label for="editNombre">Nombre</label>
+                                <input type="text" class="form-control" id="editNombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editApellido">Apellido</label>
+                                <input type="text" class="form-control" id="editApellido" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editEmail">Email</label>
+                                <input type="email" class="form-control" id="editEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editFechaNacimiento">Fecha de Nacimiento</label>
+                                <input type="date" class="form-control" id="editFechaNacimiento" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editPais">País</label>
+                                <input type="text" class="form-control" id="editPais" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script>
+            // Aquí se cargarán los usuarios y se manejarán las acciones de editar y eliminar
+            document.addEventListener('DOMContentLoaded', function () {
+                // Función para cargar los usuarios
+                function loadUsers() {
+                    fetch('/proyecto_final/usuarios')
+                            .then(response => response.json())
+                            .then(data => {
+                                const tbody = document.getElementById('userTableBody');
+                                tbody.innerHTML = '';
+                                data.forEach(user => {
+                                    const row = document.createElement('tr');
+                                    row.innerHTML = `
+                                    <td>${user.id}</td>
+                                    <td>${user.nombre}</td>
+                                    <td>${user.apellido}</td>
+                                    <td>${user.email}</td>
+                                    <td>${user.fechaNacimiento}</td>
+                                    <td>${user.pais}</td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm" onclick="showEditModal(${user.id})">Editar</button>
+                                        <button class="btn btn-danger btn-sm" onclick="deleteUser(${user.id})">Eliminar</button>
+                                    </td>
+                                `;
+                                    tbody.appendChild(row);
+                                });
+                            });
+                }
+
+                // Función para mostrar el modal de edición
+                window.showEditModal = function (id) {
+                    // Lógica para cargar los datos del usuario en el formulario
+                    fetch(`/proyecto_final/usuario?id=${id}`)
+                            .then(response => response.json())
+                            .then(user => {
+                                document.getElementById('editUserId').value = user.id;
+                                document.getElementById('editNombre').value = user.nombre;
+                                document.getElementById('editApellido').value = user.apellido;
+                                document.getElementById('editEmail').value = user.email;
+
+                                // Convertir la fecha de nacimiento a formato YYYY-MM-DD
+                                const fechaNacimiento = new Date(user.fechaNacimiento);
+                                const formattedFechaNacimiento = fechaNacimiento.toISOString().slice(0, 10);
+                                document.getElementById('editFechaNacimiento').value = formattedFechaNacimiento;
+
+
+                                document.getElementById('editFechaNacimiento').value = user.fechaNacimiento;
+                                document.getElementById('editPais').value = user.pais;
+                                $('#editUserModal').modal('show');
+                            });
+                };
+
+                // Función para enviar el formulario de edición
+                document.getElementById('editUserForm').addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    const id = document.getElementById('editUserId').value;
+                    const nombre = document.getElementById('editNombre').value;
+                    const apellido = document.getElementById('editApellido').value;
+                    const email = document.getElementById('editEmail').value;
+                    const fechaNacimiento = document.getElementById('editFechaNacimiento').value;
+                    const pais = document.getElementById('editPais').value;
+
+                    fetch(`/proyecto_final/usuario`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            id,
+                            nombre,
+                            apellido,
+                            email,
+                            fechaNacimiento,
+                            pais
+                        })
+                    }).then(response => response.json())
+                            .then(data => {
+                                $('#editUserModal').modal('hide');
+                                loadUsers();
+                            });
+                });
+
+                // Función para eliminar un usuario
+                window.deleteUser = function (id) {
+                    fetch(`/proyecto_final/usuario?id=${id}`, {
+                        method: 'DELETE'
+                    }).then(response => response.json())
+                            .then(data => {
+                                loadUsers();
+                            });
+                };
+
+                // Cargar los usuarios al cargar la página
+                loadUsers();
+            });
+        </script>
+    </body>
+
+</html>

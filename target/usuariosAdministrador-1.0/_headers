@@ -1,0 +1,17 @@
+# Configurar encabezados para archivos JavaScript
+/*.js
+  Content-Type: text/javascript; charset=utf-8
+  X-Content-Type-Options: nosniff
+  Cache-Control: public, max-age=31536000  # Un año
+
+# Configurar Cache-Control para archivos HTML
+/*.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# Configurar Cache-Control para recursos CSS y JavaScript
+/*.css
+  Cache-Control: public, max-age=31536000  # Un año
+
+# Configurar Cache-Control para recursos de imagen
+/*.(jpg|jpeg|png|gif|webp|svg)
+  Cache-Control: public, max-age=31536000  # Un año
