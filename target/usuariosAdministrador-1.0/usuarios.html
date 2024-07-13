@@ -156,7 +156,7 @@
 
                 // Función para eliminar un usuario
                 window.deleteUser = function (id) {
-                    fetch(`/proyecto_final/usuario?id=${id}`, {
+                    fetch(`/proyecto_final/usuarios?id=${id}`, {
                         method: 'DELETE'
                     }).then(response => response.json())
                             .then(data => {
